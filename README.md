@@ -1,9 +1,9 @@
-WGS pipeline for microbiome profiling from biopsy samples
+Pipeline for microbiome profiling from biopsy samples
 ====
 
-Computational pipelines for filtering host DNA and evaluating the microbiome abundance from biopsy WGS samples.
+Computational pipelines for filtering host DNA and evaluating the microbiome abundance from biopsy WGS samples. This pipeline is aimed to be a fork of the previous WGS process for whole exome and updates for longer length Illumina reads.
 
-Citing our paper:
+Citing origin paper:
 ---------
 Chao Zhang, Kyle Cleveland, Felice Schnoll-Sussman, Bridget McClure, Michelle Bigg, Prashant Thakkar, Nikolaus Schultz, Manish A. Shah, and Doron Betel. "Identification of low abundance microbiome in clinical samples using whole genome sequencing." *Genome Biology* 16 (2015).
 
@@ -13,7 +13,7 @@ Installing prerequisite software and corresponding databases
 Download: [BWA 0.6.2](http://sourceforge.net/projects/bio-bwa/files/bwa-0.6.2.tar.bz2/download)  
 hg19 Human reference genome: http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/  
 Additional human genomes: ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens//ARCHIVE/BUILD.37.3/Assembled_chromosomes/seq/  
-#### RepearMasker  
+#### RepeatMasker  
 Download: [RepeatMasker 4.0.5](http://www.repeatmasker.org/RMDownload.html)  
 Database: [Repbase for RepeatMasker] (http://www.girinst.org/)
 #### BLAST & MegaBLAST 2.2.27
@@ -32,6 +32,17 @@ Download: [samtools 0.1.19](http://sourceforge.net/projects/samtools/files/samto
 Setting the parameters
 ---------
 Set the correct paths to above software and databases in `configs.sh`
+
+Build the RepeatMasker Docker file as denoted in: https://github.com/robsyme/nextflow-annotate/tree/master/Dockerfiles/RepeatMasker-onbuild
+```bash
+wget \
+    --user my_username \
+    --password my_password \
+    -O repeatmaskerlibraries.tar.gz \
+    http://www.girinst.org/server/RepBase/protected/repeatmaskerlibraries/RepBaseRepeatMaskerEdition-20170127.tar.gz
+echo "FROM robsyme/repeatmasker-onbuild" > Dockerfile
+docker build -t repeatmasker .
+```
 
 Filtering host DNA
 ---------
