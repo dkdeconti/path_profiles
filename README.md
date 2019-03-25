@@ -12,7 +12,12 @@ Installing prerequisite software and corresponding databases
 #### BWA
 Download: [BWA 0.6.2](http://sourceforge.net/projects/bio-bwa/files/bwa-0.6.2.tar.bz2/download)  
 hg19 Human reference genome: http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/  
-Additional human genomes: ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens//ARCHIVE/BUILD.37.3/Assembled_chromosomes/seq/  
+Additional human genomes: ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens//ARCHIVE/BUILD.37.3/Assembled_chromosomes/seq/
+
+```bash
+
+```
+
 #### RepeatMasker  
 Download: [RepeatMasker 4.0.5](http://www.repeatmasker.org/RMDownload.html)  
 Database: [Repbase for RepeatMasker] (http://www.girinst.org/)
@@ -33,7 +38,7 @@ Setting the parameters
 ---------
 Set the correct paths to above software and databases in `configs.sh`
 
-Build the RepeatMasker Docker file as denoted in: https://github.com/robsyme/nextflow-annotate/tree/master/Dockerfiles/RepeatMasker-onbuild
+Build the RepeatMasker Docker as denoted in: https://github.com/robsyme/nextflow-annotate/tree/master/Dockerfiles/RepeatMasker-onbuild
 ```bash
 wget \
     --user my_username \

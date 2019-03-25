@@ -16,12 +16,22 @@ echo "Aligning reads to hg19 Human reference genome with BWA"
 #    ${WORKDIR}/${SAMPLE}_R1.fastq \
 #    ${WORKDIR}/${SAMPLE}_R2.fastq > ${WORKDIR}/Aligned.out.sam
 
+# BWA for separate paired end FASTQs
+#$BWA mem \
+#    $HUMANHG19 \
+#    ${WORKDIR}/${SAMPLE}_R1.fastq \
+#    ${WORKDIR}/${SAMPLE}_R2.fastq > ${WORKDIR}/Aligned.out.sam
+#samtools view -S -f 4 ${WORKDIR}/Aligned.out.sam \
+#| awk '{OFS="\t"; print ">"$1"\n"$10}' - > ${WORKDIR}/${SAMPLE}_Filter_S1.fasta
+
+# BWA for singular paired end FASTQ
 $BWA mem \
+    -p \
     $HUMANHG19 \
-    ${WORKDIR}/${SAMPLE}_R1.fastq \
-    ${WORKDIR}/${SAMPLE}_R2.fastq > ${WORKDIR}/Aligned.out.sam
+    ${WORKDIR}/${SAMPLE}.fastq  > ${WORKDIR}/Aligned.out.sam
 samtools view -S -f 4 ${WORKDIR}/Aligned.out.sam \
 | awk '{OFS="\t"; print ">"$1"\n"$10}' - > ${WORKDIR}/${SAMPLE}_Filter_S1.fasta
+
 
 echo "Removing intermediate files"
 #rm ${WORKDIR}/*.sai
