@@ -15,7 +15,20 @@ hg19 Human reference genome: http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chro
 Additional human genomes: ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens//ARCHIVE/BUILD.37.3/Assembled_chromosomes/seq/
 
 ```bash
+# hg19
+rsync \
+    -avzP \
+    rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/*.fa.gz \
+    /path/to/hg19_bwa
 
+# Human other
+rsync \
+    --copy-links \
+    --recursive \
+    --times \
+    --verbose \
+    rsync://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/ARCHIVE/BUILD.37.3/Assembled_chromosomes/seq/*.fa.gz \
+    /path/to/human_bwa/
 ```
 
 #### RepeatMasker  
@@ -55,7 +68,7 @@ Step 1. Align all reads to hg19 Human reference genome with BWA
 `./Filter_S1.sh`  
 Step 2. Align the remaining unmapped reads to additional human genomes with BWA  
 `./Filter_S2.sh`  
-Step 3. Filter the remaining unmapped reads with RepearMasker  
+Step 3. Filter the remaining unmapped reads with RepeatMasker  
 `./Filter_S3.sh`  
 Step 4. Align the remaining reads to human sequence database with BLAST  
 `./Filter_S4.sh`  
