@@ -28,7 +28,7 @@ echo "Aligning reads to hg19 Human reference genome with BWA"
 $BWA mem \
     -p \
     $HUMANHG19 \
-    ${WORKDIR}/${SAMPLE}.fastq  > ${WORKDIR}/Aligned.out.sam
+    ${WORKDIR}/${SAMPLE}.fastq.gz  > ${WORKDIR}/Aligned.out.sam
 samtools view -S -f 4 ${WORKDIR}/Aligned.out.sam \
 | awk '{OFS="\t"; print ">"$1"\n"$10}' - > ${WORKDIR}/${SAMPLE}_Filter_S1.fasta
 

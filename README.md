@@ -44,7 +44,7 @@ wget \
     --user my_username \
     --password my_password \
     -O repeatmaskerlibraries.tar.gz \
-    http://www.girinst.org/server/RepBase/protected/repeatmaskerlibraries/RepBaseRepeatMaskerEdition-20170127.tar.gz
+    https://www.girinst.org/server/RepBase/protected/repeatmaskerlibraries/RepBaseRepeatMaskerEdition-20181026.tar.gz
 echo "FROM robsyme/repeatmasker-onbuild" > Dockerfile
 docker build -t repeatmasker .
 ```
