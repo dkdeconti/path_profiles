@@ -13,6 +13,7 @@ echo "Aligning reads to hg19 Human reference genome with BWA"
 
 # Docker for RepeatMasker
 # https://github.com/robsyme/nextflow-annotate/tree/master/Dockerfiles/RepeatMasker-onbuild
+WORKDIR=$(pwd)
 docker run \
     -v ${WORKDIR}:/in \
     -w /in \
@@ -20,9 +21,18 @@ docker run \
     RepeatMasker \
         -species human \
         -qq \
-        ${SAMPLE}_Filter_S2.fasta
+        ${SAMPLE}_Filter_S2.fasta \
+        -dir .
+java -jar WGSparser.jar \
+    parseRM \
+    ${WORKDIR}/${SAMPLE}_Filter_S2.fasta \
+    ${WORKDIR}/${SAMPLE}_Filter_S3.fasta
 
-java -jar WGSparser.jar parseRM ${WORKDIR}/${SAMPLE}_Filter_S2.fasta ${WORKDIR}/${SAMPLE}_Filter_S3.fasta
+# Mask any reads with more than three nucleotides masked
+$BBMASK \
+    in=${WORKDIR}/${SAMPLE}_Filter_S2.fasta \
+    out=${WORKDIR}/${SAMPLE}_Filter_S3.fasta
+
 
 echo "Removing intermediate files"
 rm ${WORKDIR}/${SAMPLE}_Filter_S2.fasta.tbl

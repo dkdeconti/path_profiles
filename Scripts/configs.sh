@@ -3,6 +3,7 @@ export PATH=/home/deconti/bin/bowtie2-2.3.5-linux-x86_64/:/home/deconti/bin/samt
 # removed from PATH : /home/user/tools/RepeatMasker/home/user/R/R-3.0.2/bin/:/home/user/R/R-3.0.2/bin/��$PATH
 
 BWA=${HOME}/bin/bwa
+BBMASK=${HOME}/bin/bbmap/bbmask.sh
 BOWTIE2=/home/user/tools/bowtie2-2.2.5/bowtie2
 PATHOSCOPE=/home/user/ptools/pathoscope2/pathoscope/pathoscope.py
 
