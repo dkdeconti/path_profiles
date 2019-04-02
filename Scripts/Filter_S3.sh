@@ -29,8 +29,9 @@ java -jar WGSparser.jar \
     ${WORKDIR}/${SAMPLE}_Filter_S3.fasta
 
 # Mask any reads with more than three nucleotides masked
-$BBMASK \
-    in=${WORKDIR}/${SAMPLE}_Filter_S2.fasta \
+python rename_contigs.py ${WORKDIR}/${SAMPLE}_Filter_S2 \
+| $BBMASK \
+    in=stdin.fa \
     out=${WORKDIR}/${SAMPLE}_Filter_S3.fasta
 
 
